@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南安一中32班</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding-bottom: 20px;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        nav {
+            background-color: #4a6cf7;
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffcc00;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: #ffcc00;
+        }
+
+        .menu-btn {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 4rem 5%;
+            text-align: center;
+            background: white;
+            margin: 2rem 5%;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #4a6cf7;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: #4a6cf7;
+            color: white;
+            padding: 0.7rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #3a5ce7;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #4a6cf7;
+        }
+
+        .products {
+            padding: 3rem 5%;
+        }
+
+        .products-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .product-card {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9ff;
+            border-left: 4px solid #4a6cf7;
+        }
+
+        .product-card h3 {
+            color: #4a6cf7;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .product-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .classmates {
+            padding: 3rem 5%;
+        }
+
+        .classmates-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .classmate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .classmate-card {
+            background: #f8f9ff;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .classmate-name {
+            font-weight: bold;
+            color: #4a6cf7;
+        }
+
+        .scores {
+            padding: 3rem 5%;
+        }
+
+        .scores-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .score-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .score-table th,
+        .score-table td {
+            padding: 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+        }
+
+        .score-table th {
+            background-color: #4a6cf7;
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .timetable {
+            padding: 3rem 5%;
+        }
+
+        .timetable-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .timetable-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .timetable-table th {
+            background-color: #4a6cf7;
+            color: white;
+            padding: 0.8rem;
+        }
+
+        .timetable-table td {
+            padding: 0.8rem;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        footer {
+            background-color: #4a6cf7;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 5%;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #4a6cf7;
+                padding: 1rem 5%;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .nav-links li {
+                margin: 0.8rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <div class="nav-container">
+    <div class="logo">南安一中<span>32</span>班</div>
+    <div class="menu-btn" id="menuBtn">三</div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#products">产品介绍</a></li>
+      <li><a href="#classmates">同学目录</a></li>
+      <li><a href="#scores">成绩查询</a></li>
+      <li><a href="#timetable">课程表</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <h1>南安一中32班班级主页</h1>
+  <p>本班主页用于展示班级信息、同学名单、课程安排与成绩查询。</p>
+  <a href="#classmates" class="btn">查看同学目录</a>
+</section>
+
+<section class="products" id="products">
+  <h2 class="section-title">产品介绍</h2>
+  <div class="products-container">
+    <div class="product-card">
+      <h3>飞牛NAS</h3>
+      <p>飞牛NAS是一款高性能的网络存储设备，具备大容量、高稳定性、低功耗的特点。支持多设备同步、远程访问、数据备份与共享，可轻松搭建私人云存储系统，为各类数据（包括植物培养箱的监控数据、灌溉日志等）提供安全可靠的存储解决方案。</p>
+      <p>同时支持挂载青龙面板脚本，实现存储与自动化控制的无缝衔接，满足植物培养箱数据存储与自动化管理的双重需求。</p>
+    </div>
+    <div class="product-card">
+      <h3>植物培养箱</h3>
+      <p>植物培养箱是一款智能化的植物培育设备，具备精准控温、控湿、控光、通风调节功能，可模拟不同环境条件下的生长环境，适用于各类植物的育苗、组培、生长试验等场景。</p>
+      <p>设备支持外接传感器实时监测土壤湿度、营养液浓度、环境CO₂浓度等关键参数，为自动化灌溉和AI管控提供数据基础。</p>
+    </div>
+    <div class="product-card">
+      <h3>青龙面板全自动灌溉</h3>
+      <p>青龙面板是一款可视化的脚本管理工具，通过配置自定义脚本，可实现植物培养箱的全自动灌溉控制。根据预设的时间周期、土壤湿度阈值等条件，自动触发灌溉泵启停，精准控制灌溉水量和频率，无需人工干预。</p>
+      <p>脚本可读取飞牛NAS存储的历史数据，动态调整灌溉策略，适配不同植物的生长需求，同时记录灌溉日志便于追溯分析。</p>
+    </div>
+    <div class="product-card">
+      <h3>OALLM千问AI接管植物培养箱</h3>
+      <p>OALLM千问AI可全面接管植物培养箱的运行管控，基于海量植物生长数据和实时监测的环境参数，通过AI算法智能调整温度、湿度、光照、灌溉、通风等所有运行参数。</p>
+      <p>具备自主学习能力，可根据植物生长状态动态优化培育方案，识别异常生长情况并自动调整管控策略，同时可通过飞牛NAS调取历史数据进行生长趋势分析，实现植物培养的全流程智能化、无人化管理。</p>
+    </div>
+  </div>
+</section>
+
+<section class="classmates" id="classmates">
+  <h2 class="section-title">全班同学目录（42人）</h2>
+  <div class="classmates-container">
+    <div class="classmate-grid">
+      <div class="classmate-card"><div class="classmate-name">1 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">2 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">3 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">4 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">5 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">6 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">7 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">8 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">9 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">10 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">11 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">12 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">13 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">14 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">15 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">16 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">17 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">18 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">19 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">20 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">21 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">22 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">23 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">24 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">25 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">26 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">27 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">28 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">29 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">30 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">31 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">32 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">33 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">34 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">35 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">36 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">37 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">38 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">39 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">40 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">41 未定</div></div>
+      <div class="classmate-card"><div class="classmate-name">42 未定</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="scores" id="scores">
+  <h2 class="section-title">成绩查询（7科）</h2>
+  <div class="scores-container">
+    <table class="score-table">
+      <tr>
+        <th>姓名</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>英语</th>
+        <th>道法</th>
+        <th>生物</th>
+        <th>地理</th>
+        <th>历史</th>
+      </tr>
+      <tr><td>1 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>2 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>3 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>4 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>5 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>6 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>7 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>8 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>9 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>10 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>11 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>12 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>13 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>14 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>15 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>16 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>17 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>18 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>19 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>20 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>21 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>22 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>23 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>24 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>25 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>26 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>27 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>28 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>29 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>30 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>31 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>32 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>33 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>34 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>35 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>36 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>37 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>38 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>39 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>40 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>41 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+      <tr><td>42 未定</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td><td>最近没有考试</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="timetable" id="timetable">
+  <h2 class="section-title">课程表（每天8节）</h2>
+  <div class="timetable-container">
+    <table class="timetable-table">
+      <tr>
+        <th>节次</th>
+        <th>周一</th>
+        <th>周二</th>
+        <th>周三</th>
+        <th>周四</th>
+        <th>周五</th>
+      </tr>
+      <tr><td>1</td><td>语文</td><td>语文</td><td>语文</td><td>语文</td><td>英语</td></tr>
+      <tr><td>2</td><td>英语</td><td>体育</td><td>数学</td><td>数学</td><td>数学</td></tr>
+      <tr><td>3</td><td>数学</td><td>英语</td><td>英语</td><td>英语</td><td>语文</td></tr>
+      <tr><td>4</td><td>数学</td><td>数学</td><td>英语</td><td>体育</td><td>语文</td></tr>
+      <tr><td>5</td><td>道法</td><td>生物</td><td>音乐</td><td>生物</td><td>地理</td></tr>
+      <tr><td>6</td><td>体育</td><td>道法</td><td>历史</td><td>地理</td><td>体育</td></tr>
+      <tr><td>7</td><td>历史</td><td>地理</td><td>班会</td><td>心理</td><td>英语</td></tr>
+      <tr><td>8</td><td>地理</td><td>政治</td><td>生物</td><td>历史</td><td>语文</td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <p>南安一中32班 · 班级主页</p>
+  <p>2026</p>
+</footer>
+
+<script>
+window.addEventListener('load', () => {
+  document.body.style.opacity = 1;
+});
+
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+menuBtn.addEventListener('click', () => {
+  navLinks.classList.toggle('show');
+});
+</script>
+</body>
+</html>
